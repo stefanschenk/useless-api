@@ -1,0 +1,21 @@
+{
+  "name": "useless-api",
+  "version": "0.0.1",
+  "description": "A useless api for workshops or demos",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "REST",
+    "api",
+    "useless"
+  ],
+  "author": "Stefan Schenk",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.1.6"
+  }
+}
