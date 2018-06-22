@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 var db = require('./db');
 
-var UserController = require('./user/UserController');
+var ContactController = require('./contact/ContactController');
 var QuoteController = require('./quote/QuoteController');
 
 app.use(function(req, res, next) {
@@ -12,7 +12,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/users', UserController);
+app.use('/contacts', ContactController);
 app.use('/quotes', QuoteController);
 
 module.exports = app;
