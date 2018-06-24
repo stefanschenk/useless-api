@@ -17,7 +17,7 @@ router.post('/', function (req, res) {
       email : req.body.email,
       address : {
         street : req.body.address.street,
-        zipcode : req.body.address.zipcode,
+        postcode : req.body.address.postcode,
         city : req.body.address.city
       }
     },

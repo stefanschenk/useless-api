@@ -7,7 +7,7 @@ var ContactSchema = new mongoose.Schema({
   email: String,
   address: {
     street: String,
-    zipcode: String,
+    postcode: String,
     city: String
   }
 });
