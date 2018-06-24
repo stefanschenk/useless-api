@@ -1,0 +1,187 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "REST api for use with workshop introduction CodeceptJS",
+    "version": "1.0.0",
+    "title": "Useless API",
+    "contact": {
+      "email": "stefan@detesters.nl"
+    }
+  },
+  "host": "useless-api.azurewebsites.net",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "quotes",
+      "description": "Manage a list of quotes"
+    },
+    {
+      "name": "contacts",
+      "description": "Access to your contact list"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/quotes": {
+      "get": {
+        "tags": [
+          "quotes"
+        ],
+        "summary": "Returns a list the quotes",
+        "description": "",
+        "operationId": "getQuotes",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "quotes"
+        ],
+        "summary": "Add a new quote",
+        "description": "",
+        "operationId": "addQuote",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "quote",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Quote"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Quote"
+            }
+          },
+          "400": {
+            "description": "Invalid Quote"
+          }
+        }
+      }
+    },
+    "/quotes/{quoteId}": {
+      "put": {
+        "tags": [
+          "quotes"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "quoteId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "quotes"
+        ],
+        "summary": "Find purchase order by ID",
+        "description": "For valid response try integer IDs with value >= 1 and <= 10.         Other values will generated exceptions",
+        "operationId": "getOrderById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "quoteId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Quote"
+            }
+          },
+          "404": {
+            "description": "Quote not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "quotes"
+        ],
+        "summary": "Delete purchase order by ID",
+        "description": "For valid response try integer IDs with positive integer value.         Negative or non-integer values will generate API errors",
+        "operationId": "deleteOrder",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "quoteId",
+            "in": "path",
+            "description": "ID of the quote that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Quote": {
+      "type": "object",
+      "properties": {
+        "quote": {
+          "type": "string"
+        },
+        "communicator": {
+          "type": "string",
+          "description": "who said it"
+        },
+        "source": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
