@@ -29,7 +29,7 @@
         "tags": [
           "quotes"
         ],
-        "summary": "Returns a list the quotes",
+        "summary": "Returns a list of quotes",
         "description": "",
         "operationId": "getQuotes",
         "produces": [
@@ -40,10 +40,9 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "integer",
-                "format": "int32"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ResponseQuote"
               }
             }
           }
@@ -74,11 +73,8 @@
           "201": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/Quote"
+              "$ref": "#/definitions/ResponseQuote"
             }
-          },
-          "400": {
-            "description": "Invalid Quote"
           }
         }
       }
@@ -88,6 +84,9 @@
         "tags": [
           "quotes"
         ],
+        "summary": "Update quote by ID",
+        "description": "",
+        "operationId": "updateQuote",
         "produces": [
           "application/json"
         ],
@@ -95,14 +94,26 @@
           {
             "name": "quoteId",
             "in": "path",
-            "description": "",
+            "description": "ID of the quote that needs to be updated",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "quote",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Quote"
+            }
           }
         ],
         "responses": {
           "204": {
             "description": ""
+          },
+          "404": {
+            "description": "No quote found."
           }
         }
       },
@@ -110,9 +121,9 @@
         "tags": [
           "quotes"
         ],
-        "summary": "Find purchase order by ID",
-        "description": "For valid response try integer IDs with value >= 1 and <= 10.         Other values will generated exceptions",
-        "operationId": "getOrderById",
+        "summary": "Find quote by ID",
+        "description": "",
+        "operationId": "getQuoteById",
         "produces": [
           "application/json"
         ],
@@ -120,7 +131,7 @@
           {
             "name": "quoteId",
             "in": "path",
-            "description": "",
+            "description": "ID of the quote that you want to retrieve",
             "required": true,
             "type": "string"
           }
@@ -129,11 +140,11 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/Quote"
+              "$ref": "#/definitions/ResponseQuote"
             }
           },
           "404": {
-            "description": "Quote not found"
+            "description": "No quote found."
           }
         }
       },
@@ -141,9 +152,9 @@
         "tags": [
           "quotes"
         ],
-        "summary": "Delete purchase order by ID",
-        "description": "For valid response try integer IDs with positive integer value.         Negative or non-integer values will generate API errors",
-        "operationId": "deleteOrder",
+        "summary": "Delete quote by ID",
+        "description": "",
+        "operationId": "deleteQuote",
         "produces": [
           "application/json"
         ],
@@ -157,17 +168,203 @@
           }
         ],
         "responses": {
-          "400": {
-            "description": "Invalid ID supplied"
+          "200": {
+            "description": "successful operation"
           },
           "404": {
-            "description": "Order not found"
+            "description": "No quote found."
+          }
+        }
+      }
+    },
+    "/contacts": {
+      "get": {
+        "tags": [
+          "contacts"
+        ],
+        "summary": "Returns a list of contacts",
+        "description": "",
+        "operationId": "getContacts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ResponseContact"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "contacts"
+        ],
+        "summary": "Add a new contact",
+        "description": "",
+        "operationId": "addContact",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "contact",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Contact"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseContact"
+            }
+          }
+        }
+      }
+    },
+    "/contacts/{contactId}": {
+      "put": {
+        "tags": [
+          "contacts"
+        ],
+        "summary": "Update contact by ID",
+        "description": "",
+        "operationId": "updateContact",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "contactId",
+            "in": "path",
+            "description": "ID of the contact that needs to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "contact",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Contact"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "404": {
+            "description": "No contact found."
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "contacts"
+        ],
+        "summary": "Find contact by ID",
+        "description": "",
+        "operationId": "getContactById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "contactId",
+            "in": "path",
+            "description": "ID of the contact that you want to retrieve",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseContact"
+            }
+          },
+          "404": {
+            "description": "No contact found."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "contacts"
+        ],
+        "summary": "Delete contact by ID",
+        "description": "",
+        "operationId": "deleteContact",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "contactId",
+            "in": "path",
+            "description": "ID of the contact that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "No contact found."
           }
         }
       }
     }
   },
   "definitions": {
+    "Contact": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Enter an telephone including countrycode (+31)"
+        },
+        "email": {
+          "type": "string"
+        },
+        "address": {
+          "type": "object",
+          "properties": {
+            "street": {
+              "type": "string",
+              "description": "Street and housenumber"
+            },
+            "postcode": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
     "Quote": {
       "type": "object",
       "properties": {
@@ -182,6 +379,67 @@
           "type": "string"
         }
       }
+    },
+    "ResponseContact": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Enter an telephone including countrycode (+31)"
+        },
+        "email": {
+          "type": "string"
+        },
+        "address": {
+          "type": "object",
+          "properties": {
+            "street": {
+              "type": "string",
+              "description": "Street and housenumber"
+            },
+            "postcode": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            }
+          }
+        },
+        "__v": {
+          "type": "integer"
+        }
+      }
+    },
+    "ResponseQuote": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "quote": {
+          "type": "string"
+        },
+        "communicator": {
+          "type": "string",
+          "description": "who said it"
+        },
+        "source": {
+          "type": "string"
+        },
+        "__v": {
+          "type": "integer"
+        }
+      }
     }
+
   }
 }
