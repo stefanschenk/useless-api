@@ -38,6 +38,16 @@ router.get('/', function (req, res) {
 
 });
 
+// RETURNS THE NUMBER OF CONTACTS IN THE DATABASE
+router.get('/count', function (req, res) {
+
+  Contact.countDocuments({}, function (err, contactsCount) {
+    if (err) return res.status(500).send("There was a problem finding the contacts.");
+    res.status(200).json({ count: contactsCount });
+  });
+
+});
+
 // GETS A SINGLE CONTACT FROM THE DATABASE
 router.get('/:id', function (req, res) {
 

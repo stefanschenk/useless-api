@@ -32,6 +32,16 @@ router.get('/', function (req, res) {
 
 });
 
+// RETURNS THE NUMBER OF QUOTES IN THE DATABASE
+router.get('/count', function (req, res) {
+
+  Quote.countDocuments({}, function (err, quotesCount) {
+    if (err) return res.status(500).send("There was a problem finding the quotes.");
+    res.status(200).json({ count: quotesCount });
+  });
+
+});
+
 // GETS A SINGLE QUOTE FROM THE DATABASE
 router.get('/:id', function (req, res) {
 
