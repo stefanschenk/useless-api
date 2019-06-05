@@ -8,7 +8,7 @@
       "email": "stefan@detesters.nl"
     }
   },
-  "host": "useless-api.azurewebsites.net",
+  "host": "localhost:3001",
   "basePath": "/",
   "tags": [
     {
@@ -20,21 +20,15 @@
       "description": "Access to your contact list"
     }
   ],
-  "schemes": [
-    "https"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/quotes": {
       "get": {
-        "tags": [
-          "quotes"
-        ],
+        "tags": ["quotes"],
         "summary": "Returns a list of quotes",
         "description": "",
         "operationId": "getQuotes",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -49,15 +43,11 @@
         }
       },
       "post": {
-        "tags": [
-          "quotes"
-        ],
+        "tags": ["quotes"],
         "summary": "Add a new quote",
         "description": "",
         "operationId": "addQuote",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "body",
@@ -81,15 +71,11 @@
     },
     "/quotes/{quoteId}": {
       "put": {
-        "tags": [
-          "quotes"
-        ],
+        "tags": ["quotes"],
         "summary": "Update quote by ID",
         "description": "",
         "operationId": "updateQuote",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "quoteId",
@@ -119,15 +105,11 @@
         }
       },
       "get": {
-        "tags": [
-          "quotes"
-        ],
+        "tags": ["quotes"],
         "summary": "Find quote by ID",
         "description": "",
         "operationId": "getQuoteById",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "quoteId",
@@ -151,9 +133,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "quotes"
-        ],
+        "tags": ["quotes"],
         "summary": "Delete quote by ID",
         "description": "",
         "operationId": "deleteQuote",
@@ -179,15 +159,11 @@
     },
     "/contacts": {
       "get": {
-        "tags": [
-          "contacts"
-        ],
+        "tags": ["contacts"],
         "summary": "Returns a list of contacts",
         "description": "",
         "operationId": "getContacts",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -202,15 +178,11 @@
         }
       },
       "post": {
-        "tags": [
-          "contacts"
-        ],
+        "tags": ["contacts"],
         "summary": "Add a new contact",
         "description": "",
         "operationId": "addContact",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "body",
@@ -234,15 +206,11 @@
     },
     "/contacts/{contactId}": {
       "put": {
-        "tags": [
-          "contacts"
-        ],
+        "tags": ["contacts"],
         "summary": "Update contact by ID",
         "description": "",
         "operationId": "updateContact",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "contactId",
@@ -272,15 +240,11 @@
         }
       },
       "get": {
-        "tags": [
-          "contacts"
-        ],
+        "tags": ["contacts"],
         "summary": "Find contact by ID",
         "description": "",
         "operationId": "getContactById",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "contactId",
@@ -304,9 +268,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "contacts"
-        ],
+        "tags": ["contacts"],
         "summary": "Delete contact by ID",
         "description": "",
         "operationId": "deleteContact",
@@ -440,6 +402,5 @@
         }
       }
     }
-
   }
 }
